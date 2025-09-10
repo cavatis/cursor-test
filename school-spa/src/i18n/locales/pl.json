@@ -16,7 +16,8 @@
     "delete": "Usuń",
     "actions": "Akcje",
     "addStudent": "Dodaj ucznia",
-    "editStudent": "Edytuj ucznia"
+    "editStudent": "Edytuj ucznia",
+    "addStudentButton": "Dodaj ucznia"
   },
   "classes": {
     "title": "Klasy",
@@ -40,7 +41,9 @@
     "error": "Błąd",
     "success": "Sukces",
     "noClass": "Brak przypisanej klasy",
-    "removeFromClass": "Usuń z klasy"
+    "removeFromClass": "Usuń z klasy",
+    "recordsPerPage": "Rekordów na stronie",
+    "current": "aktualna"
   },
   "dashboard": {
     "title": "Panel główny",

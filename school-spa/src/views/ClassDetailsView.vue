@@ -99,6 +99,7 @@ function transferStudent(studentId: string, newClassId: string) {
             flat
             :rows-per-page-options="[10, 25, 50]"
             :pagination="{ rowsPerPage: 10 }"
+            :rows-per-page-label="$t('common.recordsPerPage')"
           >
             <template #body-cell-actions="props">
               <q-td :props="props">
