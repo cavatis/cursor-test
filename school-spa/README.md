@@ -1,6 +1,6 @@
 # school-spa
 
-This template should help get you started developing with Vue 3 in Vite.
+SPA for managing students and classes built with Vue 3, Vite, Quasar, Pinia, and Vue Router.
 
 ## Recommended IDE Setup
 
@@ -24,6 +24,27 @@ npm install
 
 ```sh
 npm run dev
+
+The app runs at `http://localhost:5173`.
+
+### Features
+
+- Students list with add/edit/delete
+- Classes list with student counts
+- Class details with assign/remove students
+- Global state in Pinia
+
+### Tech
+
+- Vue 3 + TypeScript + Vite
+- Quasar UI (Vite plugin)
+- Pinia (global store)
+- Vue Router (SPA)
+
+### Git Workflow
+
+- Feature branches: `feat/<scope>` (e.g., `feat/quasar-setup`)
+- Conventional commits (e.g., `feat(students): add CRUD view`)
 ```
 
 ### Type-Check, Compile and Minify for Production
