@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStudentsStore } from '@/stores/students'
 import { useClassesStore } from '@/stores/classes'
@@ -54,6 +54,8 @@ const polishLastNames = [
 ]
 
 const classNames = ['1A', '1B', '2A', '2B', '3A', '3B']
+const numberOfClasses = ref(6)
+const numberOfStudents = ref(48)
 
 function clearAllData() {
   if (confirm('Czy na pewno chcesz usunąć wszystkie dane? Ta operacja jest nieodwracalna.')) {
@@ -65,24 +67,39 @@ function clearAllData() {
 }
 
 function generateSampleData() {
-  if (confirm('Czy na pewno chcesz wypełnić aplikację przykładowymi danymi? Istniejące dane zostaną zastąpione.')) {
+  if (confirm(`Czy na pewno chcesz wypełnić aplikację ${numberOfClasses.value} klasami i ${numberOfStudents.value} uczniami? Istniejące dane zostaną zastąpione.`)) {
     // Clear existing data
     studentsStore.$reset()
     classesStore.$reset()
     
-    // Create 6 classes
+    // Create classes
     const createdClasses: string[] = []
-    classNames.forEach(name => {
-      classesStore.addClass({ name })
+    for (let i = 0; i < numberOfClasses.value; i++) {
+      const className = i < classNames.length ? classNames[i] : `Klasa ${i + 1}`
+      classesStore.addClass({ name: className })
       const classId = classesStore.classes[classesStore.classes.length - 1].id
       createdClasses.push(classId)
-    })
+    }
     
-    // Generate 48 students (8 per class)
-    for (let i = 0; i < 48; i++) {
+    // Generate students
+    const studentsPerClass = Math.floor(numberOfStudents.value / numberOfClasses.value)
+    const extraStudents = numberOfStudents.value % numberOfClasses.value
+    
+    for (let i = 0; i < numberOfStudents.value; i++) {
       const firstName = polishFirstNames[Math.floor(Math.random() * polishFirstNames.length)]
       const lastName = polishLastNames[Math.floor(Math.random() * polishLastNames.length)]
-      const classIndex = Math.floor(i / 8) // 8 students per class
+      
+      // Distribute students evenly across classes
+      let classIndex = Math.floor(i / studentsPerClass)
+      if (classIndex >= numberOfClasses.value) {
+        classIndex = numberOfClasses.value - 1
+      }
+      
+      // Handle extra students by distributing them to first classes
+      if (i >= studentsPerClass * numberOfClasses.value) {
+        classIndex = i - (studentsPerClass * numberOfClasses.value)
+      }
+      
       const classId = createdClasses[classIndex]
       
       studentsStore.addStudent({ firstName, lastName, classId })
@@ -143,6 +160,28 @@ function generateSampleData() {
           <div class="text-h6 q-mb-md">{{ $t('dashboard.dataManagement') }}</div>
           <div class="row q-gutter-md">
             <div class="col-12 col-sm-6">
+              <div class="row q-gutter-sm q-mb-md">
+                <div class="col-6">
+                  <q-input
+                    v-model.number="numberOfClasses"
+                    :label="$t('dashboard.numberOfClasses')"
+                    type="number"
+                    min="1"
+                    max="20"
+                    dense
+                  />
+                </div>
+                <div class="col-6">
+                  <q-input
+                    v-model.number="numberOfStudents"
+                    :label="$t('dashboard.numberOfStudents')"
+                    type="number"
+                    min="1"
+                    max="200"
+                    dense
+                  />
+                </div>
+              </div>
               <q-btn 
                 color="positive" 
                 icon="add_circle" 

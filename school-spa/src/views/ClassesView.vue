@@ -4,6 +4,7 @@ import { useClassesStore } from '@/stores/classes'
 
 const store = useClassesStore()
 const className = ref('')
+const showAddForm = ref(false)
 
 const classes = computed(() => store.classesWithCounts)
 
@@ -11,6 +12,7 @@ function add() {
   if (!className.value.trim()) return
   store.addClass({ name: className.value })
   className.value = ''
+  showAddForm.value = false
 }
 
 function remove(id: string) {
@@ -26,7 +28,17 @@ function handleKeyPress(event: KeyboardEvent) {
 
 <template>
   <q-page padding>
-    <q-card class="q-mb-md">
+    <div class="q-mb-md">
+      <q-btn 
+        v-if="!showAddForm" 
+        color="primary" 
+        icon="add" 
+        :label="$t('classes.addClassButton')" 
+        @click="showAddForm = true"
+      />
+    </div>
+    
+    <q-card v-if="showAddForm" class="q-mb-md">
       <q-card-section>
         <div class="text-h6 q-mb-md">{{ $t('classes.addClass') }}</div>
         <div class="row items-center q-gutter-md">
@@ -39,8 +51,9 @@ function handleKeyPress(event: KeyboardEvent) {
             />
           </div>
           <div class="col-12 col-sm-4 col-md-6">
-            <div class="row justify-end">
+            <div class="row justify-end q-gutter-sm">
               <q-btn color="primary" :label="$t('classes.add')" @click="add" />
+              <q-btn flat :label="$t('students.clear')" @click="showAddForm = false" />
             </div>
           </div>
         </div>

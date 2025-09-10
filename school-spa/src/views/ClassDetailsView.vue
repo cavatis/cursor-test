@@ -15,6 +15,7 @@ const assigned = computed(() => classesStore.classStudents(classId))
 const allStudents = computed(() => studentsStore.students)
 const allClasses = computed(() => classesStore.classes.filter(c => c.id !== classId))
 const selectedToAdd = ref<string | null>(null)
+const showAssignForm = ref(false)
 
 // Only show students who are not already assigned to this class
 const availableStudents = computed(() => {
@@ -26,6 +27,7 @@ function addStudent() {
   if (selectedToAdd.value) {
     classesStore.assignStudentToClass(classId, selectedToAdd.value)
     selectedToAdd.value = null
+    showAssignForm.value = false
   }
 }
 
@@ -43,9 +45,20 @@ function transferStudent(studentId: string, newClassId: string) {
 <template>
   <q-page padding>
     <div v-if="klass">
-      <div class="text-h5 q-mb-md">{{ $t('classes.classDetails') }}: {{ klass.name }}</div>
+      <div class="text-body1 text-grey-7 q-mb-sm">{{ $t('classes.classDetails') }}</div>
+      <div class="text-h4 q-mb-lg class-name-highlight">{{ klass.name }}</div>
       
-      <q-card class="q-mb-md">
+      <div class="q-mb-md">
+        <q-btn 
+          v-if="!showAssignForm" 
+          color="primary" 
+          icon="person_add" 
+          :label="$t('classes.assignStudentButton')" 
+          @click="showAssignForm = true"
+        />
+      </div>
+      
+      <q-card v-if="showAssignForm" class="q-mb-md">
         <q-card-section>
           <div class="text-h6">{{ $t('classes.assignStudent') }}</div>
           <div class="row items-center q-gutter-md q-mt-md">
@@ -61,7 +74,10 @@ function transferStudent(studentId: string, newClassId: string) {
               />
             </div>
             <div class="col-12 col-sm-4 col-md-6">
-              <q-btn color="primary" :label="$t('classes.assign')" @click="addStudent" :disable="!selectedToAdd" />
+              <div class="row q-gutter-sm">
+                <q-btn color="primary" :label="$t('classes.assign')" @click="addStudent" :disable="!selectedToAdd" />
+                <q-btn flat :label="$t('students.clear')" @click="showAssignForm = false" />
+              </div>
             </div>
           </div>
         </q-card-section>
@@ -115,6 +131,11 @@ function transferStudent(studentId: string, newClassId: string) {
   </q-page>
 </template>
 
-<style scoped></style>
+<style scoped>
+.class-name-highlight {
+  font-weight: bold;
+  color: #1976d2;
+}
+</style>
 
 

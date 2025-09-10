@@ -27,11 +27,13 @@
     "assign": "Assign",
     "remove": "Remove",
     "actions": "Actions",
-    "assignStudent": "Assign Student to Class",
+    "assignStudent": "Assign Student to This Class",
     "studentsInClass": "Students in this class",
     "noStudentsInClass": "No students assigned to this class yet",
     "addClass": "Add Class",
-    "transfer": "Transfer"
+    "transfer": "Transfer",
+    "assignStudentButton": "Assign Student",
+    "addClassButton": "Add Class"
   },
   "common": {
     "loading": "Loading...",
@@ -53,7 +55,9 @@
     "dataManagement": "Data Management",
     "generateSampleData": "Generate Sample Data",
     "clearAllData": "Clear All Data",
-    "sampleDataDescription": "Creates 6 classes and 48 students with Polish names",
-    "clearDataDescription": "Permanently deletes all students and classes"
+    "sampleDataDescription": "Creates classes and students with Polish names",
+    "clearDataDescription": "Permanently deletes all students and classes",
+    "numberOfClasses": "Number of classes",
+    "numberOfStudents": "Number of students"
   }
 }

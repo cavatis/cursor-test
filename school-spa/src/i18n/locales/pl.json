@@ -27,11 +27,13 @@
     "assign": "Przypisz",
     "remove": "Usuń",
     "actions": "Akcje",
-    "assignStudent": "Przypisz ucznia do klasy",
+    "assignStudent": "Przypisz ucznia do tej klasy",
     "studentsInClass": "Uczniowie w tej klasie",
     "noStudentsInClass": "Brak uczniów przypisanych do tej klasy",
     "addClass": "Dodaj klasę",
-    "transfer": "Przenieś"
+    "transfer": "Przenieś",
+    "assignStudentButton": "Przypisz ucznia",
+    "addClassButton": "Dodaj klasę"
   },
   "common": {
     "loading": "Ładowanie...",
@@ -53,7 +55,9 @@
     "dataManagement": "Zarządzanie danymi",
     "generateSampleData": "Wygeneruj przykładowe dane",
     "clearAllData": "Wyczyść wszystkie dane",
-    "sampleDataDescription": "Tworzy 6 klas i 48 uczniów z polskimi nazwiskami",
-    "clearDataDescription": "Trwale usuwa wszystkich uczniów i klasy"
+    "sampleDataDescription": "Tworzy klasy i uczniów z polskimi nazwiskami",
+    "clearDataDescription": "Trwale usuwa wszystkich uczniów i klasy",
+    "numberOfClasses": "Liczba klas",
+    "numberOfStudents": "Liczba uczniów"
   }
 }
