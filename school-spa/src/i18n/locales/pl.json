@@ -49,6 +49,11 @@
     "recentStudents": "Ostatnio dodani uczniowie",
     "classesOverview": "Przegląd klas",
     "noStudents": "Brak uczniów",
-    "noClasses": "Brak klas"
+    "noClasses": "Brak klas",
+    "dataManagement": "Zarządzanie danymi",
+    "generateSampleData": "Wygeneruj przykładowe dane",
+    "clearAllData": "Wyczyść wszystkie dane",
+    "sampleDataDescription": "Tworzy 6 klas i 48 uczniów z polskimi nazwiskami",
+    "clearDataDescription": "Trwale usuwa wszystkich uczniów i klasy"
   }
 }
