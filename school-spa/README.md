@@ -33,6 +33,9 @@ The app runs at `http://localhost:5173`.
 - Classes list with student counts
 - Class details with assign/remove students
 - Global state in Pinia
+- **Internationalization (PL/EN)** with language switcher
+- **Responsive design** for mobile and desktop
+- **Deployment ready** for Vercel/Netlify
 
 ### Tech
 
@@ -40,6 +43,22 @@ The app runs at `http://localhost:5173`.
 - Quasar UI (Vite plugin)
 - Pinia (global store)
 - Vue Router (SPA)
+- Vue I18n (internationalization)
+- Sass (styling)
+
+### Deployment
+
+#### Vercel
+```bash
+npm run build
+npm run deploy:vercel
+```
+
+#### Netlify
+```bash
+npm run build
+npm run deploy:netlify
+```
 
 ### Git Workflow
 

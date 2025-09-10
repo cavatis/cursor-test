@@ -20,15 +20,22 @@ function remove(id: string) {
 
 <template>
   <q-page padding>
-    <div class="q-pa-md row items-center q-gutter-md">
-      <q-input v-model="className" label="Class name" dense />
-      <q-btn color="primary" label="Add" @click="add" />
+    <div class="q-pa-md">
+      <div class="row items-center q-gutter-md">
+        <div class="col-12 col-sm-8 col-md-6">
+          <q-input v-model="className" :label="$t('classes.className')" dense />
+        </div>
+        <div class="col-12 col-sm-4 col-md-6">
+          <q-btn color="primary" :label="$t('classes.add')" @click="add" />
+        </div>
+      </div>
     </div>
+    
     <q-list bordered separator>
       <q-item v-for="c in classes" :key="c.id" :to="`/classes/${c.id}`" clickable>
         <q-item-section>
           <q-item-label>{{ c.name }}</q-item-label>
-          <q-item-label caption>{{ c.count }} students</q-item-label>
+          <q-item-label caption>{{ c.count }} {{ $t('classes.students') }}</q-item-label>
         </q-item-section>
         <q-item-section side>
           <q-btn dense flat icon="delete" color="negative" @click.stop="remove(c.id)" />

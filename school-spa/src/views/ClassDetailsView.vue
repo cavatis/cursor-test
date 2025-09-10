@@ -30,18 +30,36 @@ function removeStudent(id: string) {
 <template>
   <q-page padding>
     <div v-if="klass">
-      <div class="text-h5 q-mb-md">Class: {{ klass.name }}</div>
+      <div class="text-h5 q-mb-md">{{ $t('classes.classDetails') }}: {{ klass.name }}</div>
 
       <div class="row items-center q-gutter-md q-mb-lg">
-        <q-select v-model="selectedToAdd" :options="allStudents.map(s => ({ label: s.firstName + ' ' + s.lastName, value: s.id }))" label="Student" dense emit-value map-options />
-        <q-btn color="primary" label="Assign" @click="addStudent" />
+        <div class="col-12 col-sm-8 col-md-6">
+          <q-select 
+            v-model="selectedToAdd" 
+            :options="allStudents.map(s => ({ label: s.firstName + ' ' + s.lastName, value: s.id }))" 
+            :label="$t('students.title')" 
+            dense 
+            emit-value 
+            map-options 
+          />
+        </div>
+        <div class="col-12 col-sm-4 col-md-6">
+          <q-btn color="primary" :label="$t('classes.assign')" @click="addStudent" />
+        </div>
       </div>
 
-      <q-table :rows="assigned" :columns="[
-        { name: 'firstName', label: 'First name', field: 'firstName' },
-        { name: 'lastName', label: 'Last name', field: 'lastName' },
-        { name: 'actions', label: 'Actions', field: 'id' }
-      ]" row-key="id" flat>
+      <q-table 
+        :rows="assigned" 
+        :columns="[
+          { name: 'firstName', label: $t('students.firstName'), field: 'firstName' },
+          { name: 'lastName', label: $t('students.lastName'), field: 'lastName' },
+          { name: 'actions', label: $t('classes.actions'), field: 'id' }
+        ]" 
+        row-key="id" 
+        flat
+        :rows-per-page-options="[10, 25, 50]"
+        :pagination="{ rowsPerPage: 10 }"
+      >
         <template #body-cell-actions="props">
           <q-td :props="props">
             <q-btn dense flat icon="remove_circle" color="negative" @click="removeStudent(props.row.id)" />

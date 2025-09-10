@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "Aplikacja Szkolna",
+    "students": "Uczniowie",
+    "classes": "Klasy"
+  },
+  "students": {
+    "title": "Uczniowie",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "add": "Dodaj",
+    "update": "Aktualizuj",
+    "clear": "Wyczyść",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "actions": "Akcje"
+  },
+  "classes": {
+    "title": "Klasy",
+    "className": "Nazwa klasy",
+    "add": "Dodaj",
+    "students": "uczniów",
+    "classDetails": "Szczegóły klasy",
+    "assign": "Przypisz",
+    "remove": "Usuń",
+    "actions": "Akcje"
+  },
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "success": "Sukces"
+  }
+}

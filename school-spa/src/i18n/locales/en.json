@@ -1,0 +1,33 @@
+{
+  "app": {
+    "title": "School SPA",
+    "students": "Students",
+    "classes": "Classes"
+  },
+  "students": {
+    "title": "Students",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "add": "Add",
+    "update": "Update",
+    "clear": "Clear",
+    "edit": "Edit",
+    "delete": "Delete",
+    "actions": "Actions"
+  },
+  "classes": {
+    "title": "Classes",
+    "className": "Class name",
+    "add": "Add",
+    "students": "students",
+    "classDetails": "Class Details",
+    "assign": "Assign",
+    "remove": "Remove",
+    "actions": "Actions"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  }
+}
