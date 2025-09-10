@@ -137,7 +137,7 @@ function navigateToClass(classId: string) {
           </div>
           <div class="col-12">
             <div class="row q-gutter-sm justify-end p-2">
-              <q-btn flat :label="$t('students.clear')" @click="resetForm" />
+              <q-btn flat :label="$t('students.close')" @click="resetForm" />
               <q-btn color="primary" :label="editId ? $t('students.update') : $t('students.add')" @click="submit" />
             </div>
           </div>
@@ -193,8 +193,8 @@ function navigateToClass(classId: string) {
                   </q-item-label>
                 </q-item-section>
               </q-item>
-              <q-separator />
-              <q-item clickable v-close-popup @click="removeFromClass(props.row.id)">
+              <q-separator v-if="props.row.classId" />
+              <q-item v-if="props.row.classId" clickable v-close-popup @click="removeFromClass(props.row.id)">
                 <q-item-section>
                   <q-item-label>{{ $t('common.removeFromClass') }}</q-item-label>
                 </q-item-section>

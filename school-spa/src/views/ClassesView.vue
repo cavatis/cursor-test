@@ -53,7 +53,7 @@ function handleKeyPress(event: KeyboardEvent) {
           <div class="col-12 col-sm-4 col-md-6">
             <div class="row justify-end q-gutter-sm">
               <q-btn color="primary" :label="$t('classes.add')" @click="add" />
-              <q-btn flat :label="$t('students.clear')" @click="showAddForm = false" />
+              <q-btn flat :label="$t('classes.close')" @click="showAddForm = false" />
             </div>
           </div>
         </div>

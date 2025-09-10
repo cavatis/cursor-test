@@ -76,7 +76,7 @@ function transferStudent(studentId: string, newClassId: string) {
             <div class="col-12 col-sm-4 col-md-6">
               <div class="row q-gutter-sm">
                 <q-btn color="primary" :label="$t('classes.assign')" @click="addStudent" :disable="!selectedToAdd" />
-                <q-btn flat :label="$t('students.clear')" @click="showAssignForm = false" />
+                <q-btn flat :label="$t('classes.close')" @click="showAssignForm = false" />
               </div>
             </div>
           </div>
