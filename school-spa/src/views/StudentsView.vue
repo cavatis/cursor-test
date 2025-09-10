@@ -63,37 +63,62 @@ function removeFromClass(studentId: string) {
     classesStore.removeStudentFromClass(student.classId, studentId)
   }
 }
+
+function handleKeyPress(event: KeyboardEvent) {
+  if (event.key === 'Enter') {
+    submit()
+  }
+}
+
+function navigateToClass(classId: string) {
+  // Navigate to class details page
+  window.location.href = `/classes/${classId}`
+}
 </script>
 
 <template>
   <q-page padding>
-    <div class="q-pa-md">
-      <div class="row items-center q-gutter-md">
-        <div class="col-12 col-sm-6 col-md-3">
-          <q-input v-model="firstName" :label="$t('students.firstName')" dense />
-        </div>
-        <div class="col-12 col-sm-6 col-md-3">
-          <q-input v-model="lastName" :label="$t('students.lastName')" dense />
-        </div>
-        <div class="col-12 col-sm-6 col-md-3">
-          <q-select 
-            v-model="selectedClassId" 
-            :options="classes.map(c => ({ label: c.name, value: c.id }))" 
-            :label="$t('classes.title')" 
-            dense 
-            emit-value 
-            map-options
-            clearable
-          />
-        </div>
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="row q-gutter-sm">
-            <q-btn color="primary" :label="editId ? $t('students.update') : $t('students.add')" @click="submit" />
-            <q-btn flat :label="$t('students.clear')" @click="resetForm" />
+    <q-card class="q-mb-md">
+      <q-card-section>
+        <div class="text-h6 q-mb-md">{{ editId ? $t('students.editStudent') : $t('students.addStudent') }}</div>
+        <div class="row items-center q-gutter-md">
+          <div class="col-12 col-sm-6 col-md-3">
+            <q-input 
+              v-model="firstName" 
+              :label="$t('students.firstName')" 
+              dense 
+              @keypress="handleKeyPress"
+            />
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <q-input 
+              v-model="lastName" 
+              :label="$t('students.lastName')" 
+              dense 
+              @keypress="handleKeyPress"
+            />
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <q-select 
+              v-model="selectedClassId" 
+              :options="classes.map(c => ({ label: c.name, value: c.id }))" 
+              :label="$t('classes.title')" 
+              dense 
+              emit-value 
+              map-options
+              clearable
+              @keypress="handleKeyPress"
+            />
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="row q-gutter-sm justify-end">
+              <q-btn color="primary" :label="editId ? $t('students.update') : $t('students.add')" @click="submit" />
+              <q-btn flat :label="$t('students.clear')" @click="resetForm" />
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </q-card-section>
+    </q-card>
 
     <q-table 
       :rows="students" 
@@ -110,7 +135,7 @@ function removeFromClass(studentId: string) {
     >
       <template #body-cell-className="props">
         <q-td :props="props">
-          <div v-if="props.row.className" class="text-primary">
+          <div v-if="props.row.className" class="text-primary cursor-pointer" @click="navigateToClass(props.row.classId)">
             {{ props.row.className }}
           </div>
           <div v-else class="text-grey-6">

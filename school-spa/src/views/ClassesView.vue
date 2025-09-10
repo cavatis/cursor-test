@@ -16,20 +16,36 @@ function add() {
 function remove(id: string) {
   store.removeClass(id)
 }
+
+function handleKeyPress(event: KeyboardEvent) {
+  if (event.key === 'Enter') {
+    add()
+  }
+}
 </script>
 
 <template>
   <q-page padding>
-    <div class="q-pa-md">
-      <div class="row items-center q-gutter-md">
-        <div class="col-12 col-sm-8 col-md-6">
-          <q-input v-model="className" :label="$t('classes.className')" dense />
+    <q-card class="q-mb-md">
+      <q-card-section>
+        <div class="text-h6 q-mb-md">{{ $t('classes.addClass') }}</div>
+        <div class="row items-center q-gutter-md">
+          <div class="col-12 col-sm-8 col-md-6">
+            <q-input 
+              v-model="className" 
+              :label="$t('classes.className')" 
+              dense 
+              @keypress="handleKeyPress"
+            />
+          </div>
+          <div class="col-12 col-sm-4 col-md-6">
+            <div class="row justify-end">
+              <q-btn color="primary" :label="$t('classes.add')" @click="add" />
+            </div>
+          </div>
         </div>
-        <div class="col-12 col-sm-4 col-md-6">
-          <q-btn color="primary" :label="$t('classes.add')" @click="add" />
-        </div>
-      </div>
-    </div>
+      </q-card-section>
+    </q-card>
     
     <q-list bordered separator>
       <q-item v-for="c in classes" :key="c.id" :to="`/classes/${c.id}`" clickable>

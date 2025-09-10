@@ -13,7 +13,9 @@
     "clear": "Clear",
     "edit": "Edit",
     "delete": "Delete",
-    "actions": "Actions"
+    "actions": "Actions",
+    "addStudent": "Add Student",
+    "editStudent": "Edit Student"
   },
   "classes": {
     "title": "Classes",
@@ -26,7 +28,8 @@
     "actions": "Actions",
     "assignStudent": "Assign Student to Class",
     "studentsInClass": "Students in this class",
-    "noStudentsInClass": "No students assigned to this class yet"
+    "noStudentsInClass": "No students assigned to this class yet",
+    "addClass": "Add Class"
   },
   "common": {
     "loading": "Loading...",

@@ -13,7 +13,9 @@
     "clear": "Wyczyść",
     "edit": "Edytuj",
     "delete": "Usuń",
-    "actions": "Akcje"
+    "actions": "Akcje",
+    "addStudent": "Dodaj ucznia",
+    "editStudent": "Edytuj ucznia"
   },
   "classes": {
     "title": "Klasy",
@@ -26,7 +28,8 @@
     "actions": "Akcje",
     "assignStudent": "Przypisz ucznia do klasy",
     "studentsInClass": "Uczniowie w tej klasie",
-    "noStudentsInClass": "Brak uczniów przypisanych do tej klasy"
+    "noStudentsInClass": "Brak uczniów przypisanych do tej klasy",
+    "addClass": "Dodaj klasę"
   },
   "common": {
     "loading": "Ładowanie...",
