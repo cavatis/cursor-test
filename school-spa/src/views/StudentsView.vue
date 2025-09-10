@@ -117,10 +117,10 @@ function navigateToClass(classId: string) {
               @keypress="handleKeyPress"
             />
           </div>
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="row q-gutter-sm justify-end">
-              <q-btn color="primary" :label="editId ? $t('students.update') : $t('students.add')" @click="submit" />
+          <div class="col-12">
+            <div class="row q-gutter-sm justify-end p-2">
               <q-btn flat :label="$t('students.clear')" @click="resetForm" />
+              <q-btn color="primary" :label="editId ? $t('students.update') : $t('students.add')" @click="submit" />
             </div>
           </div>
         </div>

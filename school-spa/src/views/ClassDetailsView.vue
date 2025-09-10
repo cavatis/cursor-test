@@ -13,6 +13,7 @@ const classId = route.params.id as string
 const klass = computed(() => classesStore.classesById[classId])
 const assigned = computed(() => classesStore.classStudents(classId))
 const allStudents = computed(() => studentsStore.students)
+const allClasses = computed(() => classesStore.classes.filter(c => c.id !== classId))
 const selectedToAdd = ref<string | null>(null)
 
 // Only show students who are not already assigned to this class
@@ -30,6 +31,12 @@ function addStudent() {
 
 function removeStudent(id: string) {
   classesStore.removeStudentFromClass(classId, id)
+}
+
+function transferStudent(studentId: string, newClassId: string) {
+  if (newClassId && newClassId !== classId) {
+    classesStore.assignStudentToClass(newClassId, studentId)
+  }
 }
 </script>
 
@@ -79,6 +86,21 @@ function removeStudent(id: string) {
           >
             <template #body-cell-actions="props">
               <q-td :props="props">
+                <q-btn-dropdown dense flat icon="swap_horiz" color="primary" :label="$t('classes.transfer')">
+                  <q-list>
+                    <q-item 
+                      v-for="c in allClasses" 
+                      :key="c.id" 
+                      clickable 
+                      v-close-popup
+                      @click="transferStudent(props.row.id, c.id)"
+                    >
+                      <q-item-section>
+                        <q-item-label>{{ c.name }}</q-item-label>
+                      </q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-btn-dropdown>
                 <q-btn dense flat icon="remove_circle" color="negative" @click="removeStudent(props.row.id)" />
               </q-td>
             </template>

@@ -1,6 +1,7 @@
 {
   "app": {
     "title": "Aplikacja Szkolna",
+    "dashboard": "Panel",
     "students": "Uczniowie",
     "classes": "Klasy"
   },
@@ -29,7 +30,8 @@
     "assignStudent": "Przypisz ucznia do klasy",
     "studentsInClass": "Uczniowie w tej klasie",
     "noStudentsInClass": "Brak uczniów przypisanych do tej klasy",
-    "addClass": "Dodaj klasę"
+    "addClass": "Dodaj klasę",
+    "transfer": "Przenieś"
   },
   "common": {
     "loading": "Ładowanie...",
@@ -37,5 +39,16 @@
     "success": "Sukces",
     "noClass": "Brak przypisanej klasy",
     "removeFromClass": "Usuń z klasy"
+  },
+  "dashboard": {
+    "title": "Panel główny",
+    "totalStudents": "Łączna liczba uczniów",
+    "totalClasses": "Łączna liczba klas",
+    "studentsWithClass": "Uczniowie z klasą",
+    "studentsWithoutClass": "Uczniowie bez klasy",
+    "recentStudents": "Ostatnio dodani uczniowie",
+    "classesOverview": "Przegląd klas",
+    "noStudents": "Brak uczniów",
+    "noClasses": "Brak klas"
   }
 }

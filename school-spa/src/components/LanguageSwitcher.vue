@@ -1,9 +1,8 @@
 <template>
   <q-btn-dropdown
     flat
-    :label="currentLanguage"
-    icon="language"
-    class="q-ml-md"
+    :icon="currentFlag"
+    class="q-ml-sm"
   >
     <q-list>
       <q-item
@@ -14,6 +13,11 @@
         @click="changeLanguage(locale.code)"
         :active="locale.code === $i18n.locale"
       >
+        <q-item-section avatar>
+          <q-avatar size="24px">
+            {{ locale.flag }}
+          </q-avatar>
+        </q-item-section>
         <q-item-section>
           <q-item-label>{{ locale.name }}</q-item-label>
         </q-item-section>
@@ -29,13 +33,13 @@ import { useI18n } from 'vue-i18n'
 const { locale } = useI18n()
 
 const availableLocales = [
-  { code: 'en', name: 'English' },
-  { code: 'pl', name: 'Polski' }
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'pl', name: 'Polski', flag: '🇵🇱' }
 ]
 
-const currentLanguage = computed(() => {
+const currentFlag = computed(() => {
   const current = availableLocales.find(l => l.code === locale.value)
-  return current ? current.name : 'English'
+  return current ? current.flag : '🇺🇸'
 })
 
 function changeLanguage(lang: string) {

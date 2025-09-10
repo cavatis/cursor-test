@@ -1,6 +1,7 @@
 {
   "app": {
     "title": "School SPA",
+    "dashboard": "Dashboard",
     "students": "Students",
     "classes": "Classes"
   },
@@ -29,7 +30,8 @@
     "assignStudent": "Assign Student to Class",
     "studentsInClass": "Students in this class",
     "noStudentsInClass": "No students assigned to this class yet",
-    "addClass": "Add Class"
+    "addClass": "Add Class",
+    "transfer": "Transfer"
   },
   "common": {
     "loading": "Loading...",
@@ -37,5 +39,16 @@
     "success": "Success",
     "noClass": "No class assigned",
     "removeFromClass": "Remove from class"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "totalStudents": "Total Students",
+    "totalClasses": "Total Classes",
+    "studentsWithClass": "Students with Class",
+    "studentsWithoutClass": "Students without Class",
+    "recentStudents": "Recent Students",
+    "classesOverview": "Classes Overview",
+    "noStudents": "No students yet",
+    "noClasses": "No classes yet"
   }
 }
