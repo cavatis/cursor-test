@@ -41,12 +41,43 @@ export const useClassesStore = defineStore('classes', {
     assignStudentToClass(classId: string, studentId: string) {
       const k = this.classesById[classId]
       if (!k) return
-      if (!k.studentIds.includes(studentId)) k.studentIds.push(studentId)
+      
+      // Remove student from any other class first
+      this.removeStudentFromAllClasses(studentId)
+      
+      // Add to new class
+      if (!k.studentIds.includes(studentId)) {
+        k.studentIds.push(studentId)
+      }
+      
+      // Update student's classId
+      const studentsStore = useStudentsStore()
+      if (studentsStore.studentsById[studentId]) {
+        studentsStore.studentsById[studentId].classId = classId
+      }
     },
     removeStudentFromClass(classId: string, studentId: string) {
       const k = this.classesById[classId]
       if (!k) return
       k.studentIds = k.studentIds.filter(id => id !== studentId)
+      
+      // Remove classId from student
+      const studentsStore = useStudentsStore()
+      if (studentsStore.studentsById[studentId]) {
+        studentsStore.studentsById[studentId].classId = undefined
+      }
+    },
+    removeStudentFromAllClasses(studentId: string) {
+      // Remove from all classes
+      Object.values(this.classesById).forEach(klass => {
+        klass.studentIds = klass.studentIds.filter(id => id !== studentId)
+      })
+      
+      // Remove classId from student
+      const studentsStore = useStudentsStore()
+      if (studentsStore.studentsById[studentId]) {
+        studentsStore.studentsById[studentId].classId = undefined
+      }
     },
     classStudents(classId: string): Student[] {
       const studentsStore = useStudentsStore()

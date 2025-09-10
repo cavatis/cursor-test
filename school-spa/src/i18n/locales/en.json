@@ -23,11 +23,16 @@
     "classDetails": "Class Details",
     "assign": "Assign",
     "remove": "Remove",
-    "actions": "Actions"
+    "actions": "Actions",
+    "assignStudent": "Assign Student to Class",
+    "studentsInClass": "Students in this class",
+    "noStudentsInClass": "No students assigned to this class yet"
   },
   "common": {
     "loading": "Loading...",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "noClass": "No class assigned",
+    "removeFromClass": "Remove from class"
   }
 }

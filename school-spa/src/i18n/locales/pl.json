@@ -23,11 +23,16 @@
     "classDetails": "Szczegóły klasy",
     "assign": "Przypisz",
     "remove": "Usuń",
-    "actions": "Akcje"
+    "actions": "Akcje",
+    "assignStudent": "Przypisz ucznia do klasy",
+    "studentsInClass": "Uczniowie w tej klasie",
+    "noStudentsInClass": "Brak uczniów przypisanych do tej klasy"
   },
   "common": {
     "loading": "Ładowanie...",
     "error": "Błąd",
-    "success": "Sukces"
+    "success": "Sukces",
+    "noClass": "Brak przypisanej klasy",
+    "removeFromClass": "Usuń z klasy"
   }
 }

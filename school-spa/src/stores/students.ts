@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
 import { nanoid } from 'nanoid'
+import { useClassesStore } from './classes'
 
 export type Student = {
   id: string
   firstName: string
   lastName: string
+  classId?: string
 }
 
 type NewStudent = Omit<Student, 'id'>
@@ -17,6 +19,13 @@ export const useStudentsStore = defineStore('students', {
   getters: {
     students(state): Student[] {
       return state.order.map(id => state.studentsById[id])
+    },
+    studentsWithClassNames(): Array<Student & { className?: string }> {
+      const classesStore = useClassesStore()
+      return this.students.map(student => ({
+        ...student,
+        className: student.classId ? classesStore.classesById[student.classId]?.name : undefined
+      }))
     },
   },
   actions: {
