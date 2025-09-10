@@ -12,26 +12,10 @@ export type Klass = {
 type NewClass = Omit<Klass, 'id' | 'studentIds'> & { studentIds?: string[] }
 
 export const useClassesStore = defineStore('classes', {
-  state: () => {
-    // Load from localStorage on initialization
-    const savedData = localStorage.getItem('school-classes')
-    if (savedData) {
-      try {
-        const parsed = JSON.parse(savedData)
-        return {
-          classesById: parsed.classesById || {},
-          order: parsed.order || [],
-        }
-      } catch (error) {
-        console.error('Error loading classes from localStorage:', error)
-      }
-    }
-    
-    return {
-      classesById: {} as Record<string, Klass>,
-      order: [] as string[],
-    }
-  },
+  state: () => ({
+    classesById: {} as Record<string, Klass>,
+    order: [] as string[],
+  }),
   getters: {
     classes(state): Klass[] {
       return state.order.map((id: string) => state.classesById[id])
@@ -41,16 +25,6 @@ export const useClassesStore = defineStore('classes', {
     },
   },
   actions: {
-    saveToLocalStorage() {
-      try {
-        localStorage.setItem('school-classes', JSON.stringify({
-          classesById: this.classesById,
-          order: this.order,
-        }))
-      } catch (error) {
-        console.error('Error saving classes to localStorage:', error)
-      }
-    },
     addClass(input: NewClass) {
       const id = nanoid()
       this.classesById[id] = {
@@ -59,12 +33,10 @@ export const useClassesStore = defineStore('classes', {
         studentIds: input.studentIds ? [...input.studentIds] : [],
       }
       this.order.push(id)
-      this.saveToLocalStorage()
     },
     removeClass(id: string) {
       delete this.classesById[id]
       this.order = this.order.filter((x: string) => x !== id)
-      this.saveToLocalStorage()
     },
     assignStudentToClass(classId: string, studentId: string) {
       const k = this.classesById[classId]
@@ -83,9 +55,6 @@ export const useClassesStore = defineStore('classes', {
       if (studentsStore.studentsById[studentId]) {
         studentsStore.studentsById[studentId].classId = classId
       }
-      
-      this.saveToLocalStorage()
-      studentsStore.saveToLocalStorage()
     },
     removeStudentFromClass(classId: string, studentId: string) {
       const k = this.classesById[classId]
@@ -97,9 +66,6 @@ export const useClassesStore = defineStore('classes', {
       if (studentsStore.studentsById[studentId]) {
         studentsStore.studentsById[studentId].classId = undefined
       }
-      
-      this.saveToLocalStorage()
-      studentsStore.saveToLocalStorage()
     },
     removeStudentFromAllClasses(studentId: string) {
       // Remove from all classes
@@ -113,9 +79,6 @@ export const useClassesStore = defineStore('classes', {
       if (studentsStore.studentsById[studentId]) {
         studentsStore.studentsById[studentId].classId = undefined
       }
-      
-      this.saveToLocalStorage()
-      studentsStore.saveToLocalStorage()
     },
     classStudents(classId: string): Student[] {
       const studentsStore = useStudentsStore()
@@ -126,6 +89,7 @@ export const useClassesStore = defineStore('classes', {
         .filter(Boolean) as Student[]
     },
   },
+  persist: true,
 })
 
 

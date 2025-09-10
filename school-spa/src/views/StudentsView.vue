@@ -13,7 +13,12 @@ const lastName = ref('')
 const editId = ref<string | null>(null)
 const selectedClassId = ref<string | null>(null)
 
-const students = computed(() => studentsStore.studentsWithClassNames)
+const students = computed(() => {
+  return studentsStore.students.map(student => ({
+    ...student,
+    className: student.classId ? classesStore.classesById[student.classId]?.name : undefined
+  }))
+})
 const classes = computed(() => classesStore.classes)
 
 function resetForm() {
