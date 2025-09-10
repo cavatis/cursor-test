@@ -45,20 +45,36 @@ The app runs at `http://localhost:5173`.
 - Vue Router (SPA)
 - Vue I18n (internationalization)
 - Sass (styling)
+- **Supabase** (Backend-as-a-Service with PostgreSQL)
+
+### Supabase Setup
+
+1. Create a new project at [supabase.com](https://supabase.com)
+2. Go to Settings > API to get your project URL and anon key
+3. Copy `env.example` to `.env.local` and fill in your Supabase credentials:
+   ```
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+4. Run the SQL schema in `supabase-schema.sql` in your Supabase SQL editor
+5. The app will now use Supabase as the backend instead of local storage
 
 ### Deployment
 
 #### Vercel
-```bash
-npm run build
-npm run deploy:vercel
-```
+1. Install Vercel CLI: `npm install -g vercel`
+2. Login: `vercel login`
+3. Deploy: `vercel --prod`
 
 #### Netlify
-```bash
-npm run build
-npm run deploy:netlify
-```
+1. Install Netlify CLI: `npm install -g netlify-cli`
+2. Login: `netlify login`
+3. Deploy: `netlify deploy --prod --dir=dist`
+
+#### Manual Deployment
+1. Build: `npm run build`
+2. Upload `dist/` folder to your hosting provider
+3. Configure SPA routing (redirect all routes to `index.html`)
 
 ### Git Workflow
 

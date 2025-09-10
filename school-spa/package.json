@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.17.0",
+    "@supabase/supabase-js": "^2.57.4",
     "nanoid": "^5.1.5",
     "pinia": "^3.0.3",
     "quasar": "^2.18.2",
