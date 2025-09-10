@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStudentsStore } from '@/stores/students'
 import { useClassesStore } from '@/stores/classes'
 
+const router = useRouter()
 const studentsStore = useStudentsStore()
 const classesStore = useClassesStore()
 
@@ -71,8 +73,8 @@ function handleKeyPress(event: KeyboardEvent) {
 }
 
 function navigateToClass(classId: string) {
-  // Navigate to class details page
-  window.location.href = `/classes/${classId}`
+  // Navigate to class details page using Vue Router
+  router.push(`/classes/${classId}`)
 }
 </script>
 
