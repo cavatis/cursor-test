@@ -1,6 +1,7 @@
 {
   "app": {
     "title": "Aplikacja Szkolna",
+    "dashboard": "Panel",
     "students": "Uczniowie",
     "classes": "Klasy"
   },
@@ -11,31 +12,57 @@
     "add": "Dodaj",
     "update": "Aktualizuj",
     "clear": "Wyczyść",
+    "close": "Zamknij",
     "edit": "Edytuj",
     "delete": "Usuń",
     "actions": "Akcje",
     "addStudent": "Dodaj ucznia",
-    "editStudent": "Edytuj ucznia"
+    "editStudent": "Edytuj ucznia",
+    "addStudentButton": "Dodaj ucznia"
   },
   "classes": {
     "title": "Klasy",
     "className": "Nazwa klasy",
     "add": "Dodaj",
+    "close": "Zamknij",
     "students": "uczniów",
     "classDetails": "Szczegóły klasy",
     "assign": "Przypisz",
     "remove": "Usuń",
     "actions": "Akcje",
-    "assignStudent": "Przypisz ucznia do klasy",
+    "assignStudent": "Przypisz ucznia do tej klasy",
     "studentsInClass": "Uczniowie w tej klasie",
     "noStudentsInClass": "Brak uczniów przypisanych do tej klasy",
-    "addClass": "Dodaj klasę"
+    "addClass": "Dodaj klasę",
+    "transfer": "Przenieś",
+    "assignStudentButton": "Przypisz ucznia",
+    "addClassButton": "Dodaj klasę"
   },
   "common": {
     "loading": "Ładowanie...",
     "error": "Błąd",
     "success": "Sukces",
     "noClass": "Brak przypisanej klasy",
-    "removeFromClass": "Usuń z klasy"
+    "removeFromClass": "Usuń z klasy",
+    "recordsPerPage": "Rekordów na stronie",
+    "current": "aktualna"
+  },
+  "dashboard": {
+    "title": "Panel główny",
+    "totalStudents": "Łączna liczba uczniów",
+    "totalClasses": "Łączna liczba klas",
+    "studentsWithClass": "Uczniowie z klasą",
+    "studentsWithoutClass": "Uczniowie bez klasy",
+    "recentStudents": "Ostatnio dodani uczniowie",
+    "classesOverview": "Przegląd klas",
+    "noStudents": "Brak uczniów",
+    "noClasses": "Brak klas",
+    "dataManagement": "Zarządzanie danymi",
+    "generateSampleData": "Wygeneruj przykładowe dane",
+    "clearAllData": "Wyczyść wszystkie dane",
+    "sampleDataDescription": "Tworzy klasy i uczniów z polskimi nazwiskami",
+    "clearDataDescription": "Trwale usuwa wszystkich uczniów i klasy",
+    "numberOfClasses": "Liczba klas",
+    "numberOfStudents": "Liczba uczniów"
   }
 }

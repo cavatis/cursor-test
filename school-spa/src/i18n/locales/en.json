@@ -1,6 +1,7 @@
 {
   "app": {
     "title": "School SPA",
+    "dashboard": "Dashboard",
     "students": "Students",
     "classes": "Classes"
   },
@@ -11,31 +12,57 @@
     "add": "Add",
     "update": "Update",
     "clear": "Clear",
+    "close": "Close",
     "edit": "Edit",
     "delete": "Delete",
     "actions": "Actions",
     "addStudent": "Add Student",
-    "editStudent": "Edit Student"
+    "editStudent": "Edit Student",
+    "addStudentButton": "Add Student"
   },
   "classes": {
     "title": "Classes",
     "className": "Class name",
     "add": "Add",
+    "close": "Close",
     "students": "students",
     "classDetails": "Class Details",
     "assign": "Assign",
     "remove": "Remove",
     "actions": "Actions",
-    "assignStudent": "Assign Student to Class",
+    "assignStudent": "Assign Student to This Class",
     "studentsInClass": "Students in this class",
     "noStudentsInClass": "No students assigned to this class yet",
-    "addClass": "Add Class"
+    "addClass": "Add Class",
+    "transfer": "Transfer",
+    "assignStudentButton": "Assign Student",
+    "addClassButton": "Add Class"
   },
   "common": {
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
     "noClass": "No class assigned",
-    "removeFromClass": "Remove from class"
+    "removeFromClass": "Remove from class",
+    "recordsPerPage": "Records per page",
+    "current": "current"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "totalStudents": "Total Students",
+    "totalClasses": "Total Classes",
+    "studentsWithClass": "Students with Class",
+    "studentsWithoutClass": "Students without Class",
+    "recentStudents": "Recent Students",
+    "classesOverview": "Classes Overview",
+    "noStudents": "No students yet",
+    "noClasses": "No classes yet",
+    "dataManagement": "Data Management",
+    "generateSampleData": "Generate Sample Data",
+    "clearAllData": "Clear All Data",
+    "sampleDataDescription": "Creates classes and students with Polish names",
+    "clearDataDescription": "Permanently deletes all students and classes",
+    "numberOfClasses": "Number of classes",
+    "numberOfStudents": "Number of students"
   }
 }

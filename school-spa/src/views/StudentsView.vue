@@ -12,8 +12,19 @@ const firstName = ref('')
 const lastName = ref('')
 const editId = ref<string | null>(null)
 const selectedClassId = ref<string | null>(null)
+const showAddForm = ref(false)
 
-const students = computed(() => studentsStore.studentsWithClassNames)
+const students = computed(() => {
+  return studentsStore.students.map(student => ({
+    ...student,
+    className: student.classId ? classesStore.classesById[student.classId]?.name : undefined
+  })).sort((a, b) => {
+    // First show students without class, then with class
+    if (!a.classId && b.classId) return -1
+    if (a.classId && !b.classId) return 1
+    return 0
+  })
+})
 const classes = computed(() => classesStore.classes)
 
 function resetForm() {
@@ -21,6 +32,7 @@ function resetForm() {
   lastName.value = ''
   editId.value = null
   selectedClassId.value = null
+  showAddForm.value = false
 }
 
 function submit() {
@@ -49,6 +61,7 @@ function startEdit(id: string) {
   firstName.value = s.firstName
   lastName.value = s.lastName
   selectedClassId.value = s.classId || null
+  showAddForm.value = true
 }
 
 function remove(id: string) {
@@ -80,7 +93,17 @@ function navigateToClass(classId: string) {
 
 <template>
   <q-page padding>
-    <q-card class="q-mb-md">
+    <div class="q-mb-md">
+      <q-btn 
+        v-if="!showAddForm" 
+        color="primary" 
+        icon="person_add" 
+        :label="$t('students.addStudentButton')" 
+        @click="showAddForm = true"
+      />
+    </div>
+    
+    <q-card v-if="showAddForm" class="q-mb-md">
       <q-card-section>
         <div class="text-h6 q-mb-md">{{ editId ? $t('students.editStudent') : $t('students.addStudent') }}</div>
         <div class="row items-center q-gutter-md">
@@ -112,10 +135,10 @@ function navigateToClass(classId: string) {
               @keypress="handleKeyPress"
             />
           </div>
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="row q-gutter-sm justify-end">
+          <div class="col-12">
+            <div class="row q-gutter-sm justify-end p-2">
+              <q-btn flat :label="$t('students.close')" @click="resetForm" />
               <q-btn color="primary" :label="editId ? $t('students.update') : $t('students.add')" @click="submit" />
-              <q-btn flat :label="$t('students.clear')" @click="resetForm" />
             </div>
           </div>
         </div>
@@ -128,12 +151,13 @@ function navigateToClass(classId: string) {
         { name: 'firstName', label: $t('students.firstName'), field: 'firstName' },
         { name: 'lastName', label: $t('students.lastName'), field: 'lastName' },
         { name: 'className', label: $t('classes.title'), field: 'className' },
-        { name: 'actions', label: $t('students.actions'), field: 'id' }
+        { name: 'actions', label: $t('students.actions'), field: 'id', align: 'right' }
       ]" 
       row-key="id" 
       flat
       :rows-per-page-options="[10, 25, 50]"
       :pagination="{ rowsPerPage: 10 }"
+      :rows-per-page-label="$t('common.recordsPerPage')"
     >
       <template #body-cell-className="props">
         <q-td :props="props">
@@ -163,11 +187,14 @@ function navigateToClass(classId: string) {
                 :class="{ 'bg-primary text-white': props.row.classId === c.id }"
               >
                 <q-item-section>
-                  <q-item-label>{{ c.name }}</q-item-label>
+                  <q-item-label>
+                    {{ c.name }}
+                    <span v-if="props.row.classId === c.id" class="text-caption"> ({{ $t('common.current') }})</span>
+                  </q-item-label>
                 </q-item-section>
               </q-item>
-              <q-separator />
-              <q-item clickable v-close-popup @click="removeFromClass(props.row.id)">
+              <q-separator v-if="props.row.classId" />
+              <q-item v-if="props.row.classId" clickable v-close-popup @click="removeFromClass(props.row.id)">
                 <q-item-section>
                   <q-item-label>{{ $t('common.removeFromClass') }}</q-item-label>
                 </q-item-section>
